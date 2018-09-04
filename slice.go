@@ -1,41 +1,41 @@
 package goaround
 
 // ByteAt indexes string with bound safety.
-func ByteAt(s string, index int) (ch byte) {
-	if index < len(s) {
-		ch = s[index]
-		return ch
+func ByteAt(someString string, index int) byte {
+	var length int = len(someString)
+	if index < length {
+		return someString[index]
 	} else {
-		panic("string bounds out of range")
+		return someString[length - 1]
 	}
 }
 
 // BoolAt indexes slices of booleans with bound safety.
-func BoolAt(bs []bool, index int) (b bool) {
-	if index < len(bs) {
-		b = bs[index]
-		return b
+func BoolAt(booleanSlice []bool, index int) bool {
+	var length int = len(booleanSlice)
+	if index < length {
+		return booleanSlice[index]
 	} else {
-		panic("slice bounds out of range")
+		return booleanSlice[length - 1]
 	}
 }
 
 // StringAt indexes slices of strings with bound safety.
-func StringAt(ss []string, index int) (s string) {
-	if index < len(ss) {
-		s = ss[index]
-		return s
+func StringAt(stringSlice []string, index int) string {
+	var length int = len(stringSlice)
+	if index < length {
+		return stringSlice[index]
 	} else {
-		panic("slice bounds out of range")
+		return stringSlice[length - 1]
 	}
 }
 
 // IntAt indexes slices of integers with bound safety.
-func IntAt(is []int, index int) (i int) {
-	if index < len(is) {
-		i = is[index]
-		return i
+func IntAt(intSlice []int, index int) int {
+	var length int = len(intSlice)
+	if index < length {
+		return intSlice[index]
 	} else {
-		panic("slice bounds out of range")
+		return intSlice[length - 1]
 	}
 }
