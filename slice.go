@@ -1,7 +1,7 @@
 package goaround
 
-// ByteAt indexes string with bound safety.
-func ByteAt(someString string, index int) byte {
+// GetByte indexes string with bound safety.
+func GetByte(someString string, index int) byte {
 	var length int = len(someString)
 	if index < length {
 		return someString[index]
@@ -10,8 +10,8 @@ func ByteAt(someString string, index int) byte {
 	}
 }
 
-// BoolAt indexes slices of booleans with bound safety.
-func BoolAt(booleanSlice []bool, index int) bool {
+// GetBool indexes slices of booleans with bound safety.
+func GetBool(booleanSlice []bool, index int) bool {
 	var length int = len(booleanSlice)
 	if index < length {
 		return booleanSlice[index]
@@ -20,8 +20,8 @@ func BoolAt(booleanSlice []bool, index int) bool {
 	}
 }
 
-// StringAt indexes slices of strings with bound safety.
-func StringAt(stringSlice []string, index int) string {
+// GetString indexes slices of strings with bound safety.
+func GetString(stringSlice []string, index int) string {
 	var length int = len(stringSlice)
 	if index < length {
 		return stringSlice[index]
@@ -30,8 +30,8 @@ func StringAt(stringSlice []string, index int) string {
 	}
 }
 
-// IntAt indexes slices of integers with bound safety.
-func IntAt(intSlice []int, index int) int {
+// GetInt indexes slices of integers with bound safety.
+func GetInt(intSlice []int, index int) int {
 	var length int = len(intSlice)
 	if index < length {
 		return intSlice[index]
