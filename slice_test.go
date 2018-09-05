@@ -2,7 +2,9 @@ package goaround
 
 import (
 	"fmt"
+	"testing"
 )
+
 
 
 func ExampleGetByte() {
@@ -20,6 +22,15 @@ func ExampleGetByteNegative() {
 func ExampleGetByteLeftExceeding() {
 	fmt.Println(GetByte("goaround", -100))
 	// Output: 103
+}
+func TestGetByteFromEmptyStringShouldPanic(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("Invoking GetByte on an empty string should panic!")
+		}
+	}()
+
+	GetByte("", 0)
 }
 
 func ExampleGetBool() {
@@ -71,4 +82,62 @@ func ExampleGetStringNegative() {
 func ExampleGetStringLeftExceeding() {
 	fmt.Println(GetString([]string{"go", "around"}, -100))
 	// Output: go
+}
+
+func ExampleSubString() {
+	fmt.Println(SubString("goaround", 0, 2))
+	// Output: go
+}
+func ExampleSubStringUpsideDown() {
+	fmt.Println(SubString("goaround", 2, 0))
+	// Output:
+}
+func ExampleSubStringNegative() {
+	fmt.Println(SubString("goaround", 2, -1))
+	// Output: aroun
+}
+func ExampleSubStringExceeding() {
+	fmt.Println(SubString("goaround", 2, 100))
+	// Output: around
+}
+func ExampleSubStringEqualIndices() {
+	fmt.Println(SubString("goaround", 2, 2))
+	// Output:
+}
+func ExampleSubEmptyString() {
+	fmt.Println(SubString("", 0, 0))
+	// Output:
+}
+
+func ExampleSubBoolSlice() {
+	fmt.Println(SubBoolSlice([]bool{true, false}, 0, 1))
+	// Output: [true]
+}
+func ExampleSubEmptyBoolSlice() {
+	fmt.Println(SubBoolSlice([]bool{}, 0, 0))
+	// Output: []
+}
+
+func TestSubBoolSlice(t *testing.T) {
+	var result []bool = SubBoolSlice([]bool{true, false}, 1, 0)
+	if result != nil {
+		t.Errorf("SubBoolSlice([]bool{true, false}, 1, 0) got: %v, expecetd: %v.", result, nil)
+	}
+}
+func TestEmptyBoolSlice(t *testing.T) {
+	var result []bool = SubBoolSlice([]bool{}, 0, 0)
+	if result == nil {
+		t.Errorf("SubBoolSlice([]bool{}, 0, 0) should return an empty slice, not a nil slice.")
+	}
+}
+
+
+func ExampleSubStringSlice() {
+	fmt.Println(SubStringSlice([]string{"go", "around"}, 1, 2))
+	// Output: [around]
+}
+
+func ExampleSubIntSlice() {
+	fmt.Println(SubIntSlice([]int{1, 2, 3}, 0, 2))
+	// Output: [1 2]
 }
