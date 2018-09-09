@@ -88,10 +88,6 @@ func ExampleSubString() {
 	fmt.Println(SubString("goaround", 0, 2))
 	// Output: go
 }
-func ExampleSubStringUpsideDown() {
-	fmt.Println(SubString("goaround", 2, 0))
-	// Output:
-}
 func ExampleSubStringNegative() {
 	fmt.Println(SubString("goaround", 2, -1))
 	// Output: aroun
@@ -108,6 +104,15 @@ func ExampleSubEmptyString() {
 	fmt.Println(SubString("", 0, 0))
 	// Output:
 }
+func TestSubStringUpsideDownShouldPanic(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("Subslicing a string with fromIndex > toIndex should panic!")
+		}
+	}()
+
+	SubString("goaround", 2, 0)
+}
 
 func ExampleSubBoolSlice() {
 	fmt.Println(SubBoolSlice([]bool{true, false}, 0, 1))
@@ -117,20 +122,6 @@ func ExampleSubEmptyBoolSlice() {
 	fmt.Println(SubBoolSlice([]bool{}, 0, 0))
 	// Output: []
 }
-
-func TestSubBoolSlice(t *testing.T) {
-	var result []bool = SubBoolSlice([]bool{true, false}, 1, 0)
-	if result != nil {
-		t.Errorf("SubBoolSlice([]bool{true, false}, 1, 0) got: %v, expecetd: %v.", result, nil)
-	}
-}
-func TestEmptyBoolSlice(t *testing.T) {
-	var result []bool = SubBoolSlice([]bool{}, 0, 0)
-	if result == nil {
-		t.Errorf("SubBoolSlice([]bool{}, 0, 0) should return an empty slice, not a nil slice.")
-	}
-}
-
 
 func ExampleSubStringSlice() {
 	fmt.Println(SubStringSlice([]string{"go", "around"}, 1, 2))

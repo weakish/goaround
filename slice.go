@@ -74,13 +74,13 @@ func GetInt(s []int, index int) int {
 }
 
 
-func normalizeFromTo(fromIndex int, toIndex int, length int) []int {
+func normalizeFromTo(fromIndex int, toIndex int, length int) (int, int) {
 	var normalizedFromIndex int = normalizeInclusiveIndex(fromIndex, length)
 	var normalizedToIndex int = normalizeExclusiveIndex(toIndex, length)
 	if normalizedFromIndex > normalizedToIndex {
-		return nil
+		panic("fromIndex of subslice exceeds toIndex")
 	} else {
-		return []int{normalizedFromIndex, normalizedToIndex}
+		return normalizedFromIndex, normalizedToIndex
 	}
 }
 
@@ -91,12 +91,8 @@ func SubString(s string, fromIndex int, toIndex int) string {
 	if length == 0 {
 		return ""
 	} else {
-		var indices []int = normalizeFromTo(fromIndex, toIndex, length)
-		if indices == nil {
-			return ""
-		} else {
-			return s[indices[0]:indices[1]]
-		}
+		from, to := normalizeFromTo(fromIndex, toIndex, length)
+		return s[from:to]
 	}
 }
 
@@ -104,15 +100,11 @@ func SubString(s string, fromIndex int, toIndex int) string {
 func SubBoolSlice(s []bool, fromIndex int, toIndex int) []bool {
 	RequireNonNull(s)
 	var length int = len(s)
-	var indices []int = normalizeFromTo(fromIndex, toIndex, length)
-	if indices == nil {
-		return nil
+	if length == 0 {
+		return []bool{}
 	} else {
-		if length == 0 {
-			return []bool{}
-		} else {
-			return s[indices[0]:indices[1]]
-		}
+		from, to := normalizeFromTo(fromIndex, toIndex, length)
+		return s[from:to]
 	}
 }
 
@@ -120,15 +112,11 @@ func SubBoolSlice(s []bool, fromIndex int, toIndex int) []bool {
 func SubStringSlice(s []string, fromIndex int, toIndex int) []string {
 	RequireNonNull(s)
 	var length int = len(s)
-	var indices []int = normalizeFromTo(fromIndex, toIndex, length)
-	if indices == nil {
-		return nil
+	if length == 0 {
+		return []string{}
 	} else {
-		if length == 0 {
-			return []string{}
-		} else {
-			return s[indices[0]:indices[1]]
-		}
+		from, to := normalizeFromTo(fromIndex, toIndex, length)
+		return s[from:to]
 	}
 }
 
@@ -136,14 +124,10 @@ func SubStringSlice(s []string, fromIndex int, toIndex int) []string {
 func SubIntSlice(s []int, fromIndex int, toIndex int) []int {
 	RequireNonNull(s)
 	var length int = len(s)
-	var indices []int = normalizeFromTo(fromIndex, toIndex, length)
-	if indices == nil {
-		return nil
+	if length == 0 {
+		return []int{}
 	} else {
-		if length == 0 {
-			return []int{}
-		} else {
-			return s[indices[0]:indices[1]]
-		}
+		from, to := normalizeFromTo(fromIndex, toIndex, length)
+		return s[from:to]
 	}
 }
