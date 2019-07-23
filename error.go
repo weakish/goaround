@@ -1,6 +1,9 @@
 package goaround
 
-import "log"
+import (
+	"log"
+	"os"
+)
 
 func FatalIf(err error) {
 	if err != nil {
@@ -18,4 +21,8 @@ func PanicIf(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func ErrPrint(message string) {
+	_, _ = os.Stderr.WriteString(message)
 }
