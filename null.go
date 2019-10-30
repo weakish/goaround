@@ -8,6 +8,6 @@ package goaround
 // RequireNonNull will panic if input is nil.
 func RequireNonNull(any interface{}) {
 	if any == nil {
-		panic("Nil is not accepted as input!")
+		panic("must not be null")
 	}
 }
