@@ -1,7 +1,6 @@
 // Package goaround defines some workarounds for golang.
 //
 // - Check nullability for function, interface, and pointers.
-// - Bound safe index methods of common types of slices.
 
 package goaround
 
