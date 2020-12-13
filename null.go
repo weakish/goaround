@@ -4,8 +4,8 @@
 
 package goaround
 
-// RequireNonNull will panic if input is nil.
-func RequireNonNull(any interface{}) {
+// NotNil will panic if input is nil.
+func NotNil(any interface{}) {
 	if any == nil {
 		panic("must not be null")
 	}

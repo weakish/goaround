@@ -2,17 +2,16 @@ package goaround
 
 import "testing"
 
-func TestRequireNonNullShouldPanic(t *testing.T) {
+func TestNotNil(t *testing.T) {
 	defer func() {
 		if r := recover(); r == nil {
-			t.Errorf("RequireNonNull should panic!")
+			t.Errorf("NotNil should panic!")
 		}
 	}()
 
-	RequireNonNull(nil)
+	NotNil(nil)
 }
 
-func TestRequireNonNullNotPanic(t *testing.T) {
-	RequireNonNull(0)
+func ExampleNotNil() {
+	NotNil(0)
 }
-
